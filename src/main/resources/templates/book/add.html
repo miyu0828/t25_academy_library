@@ -21,7 +21,48 @@
                                 <a th:href="@{/book/index}" class="link">← 一覧へ戻る</a>
                             </span>
                         </div>
+ 
+                        <tbody>
+                            <tr>
+                                <th scope="col">書籍名*</th>
+                                <br>
+                                <td><input type="text" name="title" th:field="*{title}"/></td>
+                                <div class="error_msg" th:if="${errtitleList}">
+                                    <div th:each="msg : ${errtitleList}">
+                                        <p th:text="${msg}" style="color: red"></p>
+                                    </div>
+                                </div>
+                                <br>
+                            
+                                <br>
+                            </tr>
+                        
+            
+                            <tr>
+                                <th scope="col">ISBN* </th>
+                                <br>
+                                <td><input type="number" name="isbn" th:field="*{isbn}"/></td>
+                                <div class="error_msg" th:if="${errisbnList}">
+                                    <div th:each="msg : ${errisbnList}">
+                                        <p th:text="${msg}" style="color: red"></p>
+                                    </div>
+
+                                </div>
+
+                            </tr>
+                           
+                        </table>
+                        <br>
+                        <br>
+                        <div class="btn_block">
+                            <input type="submit" value="保存">
+                        </div>
+                       
                     </form>
+ 
+
+                </table>
+            <div>
                 </div>
             </div>
         </div>
