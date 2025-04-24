@@ -57,14 +57,13 @@ public boolean isValid( BookMstDto bookMstDto,Model model) {
       List<String> errtitleList = new ArrayList<>();
       List<String> errisbnList = new ArrayList<>();
 
-      if(StringUtils.isBlank(booktitle)){
+      if(StringUtils.isEmpty(booktitle)){
         errtitleList.add("書籍名は必須です");
     } else if (booktitle.length() > 255) {
         errtitleList.add("書籍名は255文字以内で入力してください");
-        model.addAttribute("errTitle",errtitleList);
       }
 
-      if (StringUtils.isBlank(bookisbn)) {
+      if (StringUtils.isEmpty(bookisbn)) {
         errisbnList.add("ISBNは必須です");
     } else if (bookisbn.length() != 13) {
         errisbnList.add("ISBNは13文字で入力してください");
@@ -94,17 +93,17 @@ public boolean isValid( BookMstDto bookMstDto,Model model) {
         // String isbn = bookMstDto.getIsbn();
     
         // ISBNがnullまたは空文字の場合、エラーメッセージを設定してfalseを返す
-        if (StringUtils.isBlank(isbn)) {
+        if (StringUtils.isEmpty(isbn)) {
             return true; // ISBNが空なら何もしない
         }
     
         int bookMst = this.bookMstRepository.getIsbn(isbn);
 
+        List<String> errisbnList = new ArrayList<>();
     
-        if (bookMst >= 1) {
-            List<String> errisbnList = new ArrayList<>();
+        if (bookMst > 0) {
             errisbnList.add("登録されているISBNです");
-            model.addAttribute("errIsbn", errisbnList); // エラーメッセージをmodelにセット
+            model.addAttribute("errisbnList", errisbnList);
             return true; // ISBNが重複している場合、trueを返す
         }
     
@@ -118,7 +117,7 @@ public boolean isValid( BookMstDto bookMstDto,Model model) {
     public void save(BookMstDto bookMstDto ) {
         try {
             
-            // AccountDtoからAccountへの変換
+          
             BookMst book = new BookMst();
 
             book.setTitle(bookMstDto.getTitle());

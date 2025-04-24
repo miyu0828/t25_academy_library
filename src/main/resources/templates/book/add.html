@@ -41,7 +41,7 @@
                             <tr>
                                 <th scope="col">ISBN* </th>
                                 <br>
-                                <td><input type="number" name="isbn" th:field="*{isbn}"/></td>
+                                <td><input name="isbn" th:field="*{isbn}"/></td>
                                 <div class="error_msg" th:if="${errisbnList}">
                                     <div th:each="msg : ${errisbnList}">
                                         <p th:text="${msg}" style="color: red"></p>
