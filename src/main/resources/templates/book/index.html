@@ -13,7 +13,60 @@
             <div class="inner_contens">
                 <div class="page_title">書籍一覧</div>
             </div>
+            <style>
+                .btn_block {
+                  text-align: right;
+                  padding-right: 80px; /* 右側に80pxの余白を追加 */
+                  margin-top: 20px;/*上側の余白*/
+                }
+            </style>
+
+            <div class="btn_block">
+                <a th:href="@{/book/add}" class="btn_register">書籍登録</a>
+
+            </div>
+
+            <table class="book_table">
+                <thead>
+                    <tr>
+                        <th>書籍名</th>
+                        <th>ISBN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${bookMstList}">
+                        <td th:text="${book.title}">書籍名</td>
+                        <td th:text="${book.isbn}">ISBN</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<style>
+.book_table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.book_table th,
+.book_table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+.btn_register {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+</style>
+    
         </div>
     </div>
     <div th:replace="~{common :: footer}"></div>
 </body>
+
